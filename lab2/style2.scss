@@ -1,0 +1,50 @@
+$lightRed: #fdd;
+$lightGreen: #dfd;
+$lightBlue: #ddf;
+
+$defaultThemeColor: $lightBlue;
+$borderColor: darken(desaturate($defaultThemeColor,100%), 20%);
+$defaultShapesWidth: 200px;
+$borderSize:$defaultShapesWidth * 0.1;
+$defaultRadius: 30px;
+
+.shape{
+    display:inline-block;
+    width:200px;
+    height:200px;
+    background:$defaultThemeColor;
+    margin:20px;
+    border:$borderSize solid $borderColor;
+}
+
+.shape{
+    &:hover{
+        background:$lightRed;
+    }
+}
+
+@mixin RoundedShape($radius:$defaultRadius){
+    -webkit-border-radius:$radius;
+       -moz-border-radius:$radius;
+            border-radius:$radius;  
+}
+
+@mixin Round{
+    @include RoundedShape(9999px);
+}
+
+@mixin RoundedSquare($radius:$defaultRadius){
+    @include RoundedShape($radius);
+}
+
+#shape1{
+    @include Round;
+}
+
+#shape2{
+    @include RoundedSquare;
+}
+
+#shape3{
+    @include RoundedSquare(60px)
+}
